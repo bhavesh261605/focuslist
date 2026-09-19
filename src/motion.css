@@ -13,27 +13,155 @@
  * Synchronous local tasks need no loader. Use skeletons for any future async data,
  * tied to the real pending promise and removed immediately when it resolves.
  */
-:root{--motion-press:160ms;--motion-state:220ms;--motion-success:280ms;--ease-standard:cubic-bezier(.25,1,.5,1);--ease-spring:cubic-bezier(.2,.85,.3,1)}
-button,a,summary{transition:transform var(--motion-press) var(--ease-standard),opacity var(--motion-press) var(--ease-standard)}
-button:active{transform:scale(.97)}
-.brand-logo,.theme-switch svg,.theme-thumb,.check-visual,.check-visual svg,.row-actions,.add-button svg,.timer-reset svg,.finish-focus svg{transition:transform var(--motion-state) var(--ease-standard),opacity var(--motion-state) var(--ease-standard)}
-.timer-track>span,.momentum-line>span{transition:transform var(--motion-state) var(--ease-standard)}
-.finish-focus:hover svg:last-child{transform:translateX(3px)}
+:root {
+  --motion-press: 160ms;
+  --motion-state: 220ms;
+  --motion-success: 280ms;
+  --ease-standard: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.2, 0.85, 0.3, 1);
+}
+button,
+a,
+summary {
+  transition:
+    transform var(--motion-press) var(--ease-standard),
+    opacity var(--motion-press) var(--ease-standard);
+}
+button:active {
+  transform: scale(0.97);
+}
+.brand-logo,
+.theme-switch svg,
+.theme-thumb,
+.check-visual,
+.check-visual svg,
+.row-actions,
+.add-button svg,
+.timer-reset svg,
+.finish-focus svg {
+  transition:
+    transform var(--motion-state) var(--ease-standard),
+    opacity var(--motion-state) var(--ease-standard);
+}
+.timer-track > span,
+.momentum-line > span {
+  transition: transform var(--motion-state) var(--ease-standard);
+}
+.finish-focus:hover svg:last-child {
+  transform: translateX(3px);
+}
 /* Entry movement identifies the affected object; no chained animation delays. */
-.task-row,.queue-chip,.active-filters button,.desk-task{animation:object-enter var(--motion-state) var(--ease-standard) both}
-.stat-number,.dial-value strong{animation:value-enter var(--motion-state) var(--ease-standard) both}
-.edit-dialog[open],.preferences[open] .preferences-panel{animation:panel-enter var(--motion-state) var(--ease-standard) both}
-.toast{animation:toast-enter var(--motion-state) var(--ease-standard) both}
-.toast-check,.check-control input:checked+.check-visual{animation:success-pop var(--motion-success) var(--ease-spring) both}
-.completion-spark i{animation:spark-out var(--motion-success) var(--ease-standard) both}
-@keyframes object-enter{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-@keyframes value-enter{from{opacity:.55;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
-@keyframes panel-enter{from{opacity:0;transform:translateY(6px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes toast-enter{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
-@keyframes success-pop{0%{transform:scale(.9)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
-@keyframes spark-out{0%{opacity:0;transform:rotate(var(--angle)) translateY(-25px) scale(.4)}25%{opacity:1}100%{opacity:0;transform:rotate(var(--angle)) translateY(-48px) scale(.7)}}
+.task-row,
+.queue-chip,
+.active-filters button,
+.desk-task {
+  animation: object-enter var(--motion-state) var(--ease-standard) both;
+}
+.stat-number,
+.dial-value strong {
+  animation: value-enter var(--motion-state) var(--ease-standard) both;
+}
+.edit-dialog[open],
+.preferences[open] .preferences-panel {
+  animation: panel-enter var(--motion-state) var(--ease-standard) both;
+}
+.toast {
+  animation: toast-enter var(--motion-state) var(--ease-standard) both;
+}
+.toast-check,
+.check-control input:checked + .check-visual {
+  animation: success-pop var(--motion-success) var(--ease-spring) both;
+}
+.completion-spark i {
+  animation: spark-out var(--motion-success) var(--ease-standard) both;
+}
+@keyframes object-enter {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes value-enter {
+  from {
+    opacity: 0.55;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes toast-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+@keyframes success-pop {
+  0% {
+    transform: scale(0.9);
+  }
+  60% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes spark-out {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateY(-25px) scale(0.4);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateY(-48px) scale(0.7);
+  }
+}
 /* Input interrupts decorative feedback immediately, while transitions retarget. */
-html[data-interacting='true'] .completion-spark{display:none}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.completion-spark{display:none}}
-[data-quiet='true'] *,[data-quiet='true'] *::before,[data-quiet='true'] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-[data-quiet='true'] .completion-spark{display:none}
+html[data-interacting="true"] .completion-spark {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .completion-spark {
+    display: none;
+  }
+}
+[data-quiet="true"] *,
+[data-quiet="true"] *::before,
+[data-quiet="true"] *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+[data-quiet="true"] .completion-spark {
+  display: none;
+}

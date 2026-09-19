@@ -1,0 +1,12 @@
+import { defineConfig } from "vitest/config";
+export default defineConfig({
+  esbuild: { jsx: "automatic" },
+  test: {
+    environment: "jsdom",
+    include: ["src/*.component.test.jsx"],
+    setupFiles: ["./src/test-setup.js"],
+    restoreMocks: true,
+    pool: "threads",
+    maxWorkers: 1,
+  },
+});

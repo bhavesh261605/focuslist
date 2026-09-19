@@ -43,3 +43,13 @@ React, Vite, Lucide React, CSS. DM Sans and Manrope fonts use Google Fonts with 
 - New components are in `src/Enhancements.jsx`; pure task selectors/statistics are in `src/task-utils.js`.
 - `npm test` checks combined filtering, case-insensitive search, statistics, sorting, and source-data immutability.
 - Browser checks cover creation validation, complete/edit/delete/undo, refresh persistence, theme persistence, timer start/pause/reset, reduced motion, keyboard search, and mobile rendering.
+
+## Evaluation reliability update
+
+- Storage validation is isolated in `task-storage.js`; the `useTaskStore` hook owns persistence and cross-tab synchronization.
+- Validation recovers valid records, rejects empty/oversized titles and invalid priorities, deduplicates IDs, normalizes timestamps, limits focus pins, and strips unknown fields. User content is rendered as escaped React text.
+- `TaskRow` provides native list semantics and labelled controls. Single-key shortcuts can be disabled in preferences. Undo has no automatic timeout. Metadata and touch targets have been enlarged.
+- `useTaskBridge` isolates optional browser integration from the page component. Search/statistics are memoized; the timer updates once per second and starting a session locks the selected task. Font origins are connected early rather than discovered through a CSS import.
+- `npm test` runs 11 unit tests and 10 React component tests. The component suite checks actual creation, completion, editing, reload persistence, combined filters, delete/undo, malformed storage, escaped markup, failed writes, cross-tab events, focus limits, preferences and timer behavior.
+- `npm run format:check` checks consistent formatting. `npm run build` creates the frontend-only production output. Testing tools are development dependencies and are not bundled into the app.
+- The dependency advisory service returned HTTP 503 during this update, so no successful vulnerability-audit claim is made. FAIE must be rerun to measure any score improvement; the supplied screenshot listed categories, not failed checks.

@@ -24,4 +24,4 @@ Implemented and commented in `src/motion.css`:
 Task data is synchronously local, so no spinner or skeleton is needed. A future asynchronous source must show a layout-matched skeleton only while its real request is pending, with no minimum display delay. No animation dependency was added. The timer uses a deadline instead of assuming interval callbacks arrive on time.
 
 ## Verification and limits
-Automated tests check filtering, sorting, statistics, focus queue order, immutable source data, motion duration bounds and transition properties. Browser checks verify pin limits, completion/advancement, persistence and responsive layouts. No FAIE score or universal frame-rate measurement has been claimed. Public evaluator access still requires the owner's sharing choice.
+Automated tests check filtering, sorting, statistics, focus queue order, immutable source data, motion duration bounds and transition properties. Browser checks verify pin limits, completion/advancement, persistence and responsive layouts. No FAIE score or universal frame-rate measurement has been claimed. The deployment and GitHub source repository are public.

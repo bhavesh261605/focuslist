@@ -7,7 +7,11 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node --test src/*.test.js"
+    "test": "npm run test:unit && npm run test:components",
+    "test:unit": "node --test src/*.test.js",
+    "test:components": "vitest run",
+    "format": "prettier --write src index.html package.json vite.config.js vitest.config.js",
+    "format:check": "prettier --check src index.html package.json vite.config.js vitest.config.js"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
@@ -15,8 +19,14 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "esbuild": "npm:esbuild-wasm@0.25.12",
-    "vite": "^6.3.5"
+    "jsdom": "^26.1.0",
+    "prettier": "^3.6.2",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
   },
   "overrides": {
     "esbuild": "npm:esbuild-wasm@0.25.12"
